@@ -14,10 +14,14 @@ function makeGrid(container, size) {
         cell.style.width = `${cellSize}px`;
         cell.style.height = `${cellSize}px`;
         cell.draggable = false;
+        cell.addEventListener("mouseover", (event) => {
+            event.target.style.backgroundColor = color;
+        })
         grid.appendChild(cell);
     }
     container.appendChild(grid);
 }
 
+let color = '#00ff00';
 const gridContainer = document.getElementById('draw-space');
-makeGrid(gridContainer, 16);
+makeGrid(gridContainer, 32);

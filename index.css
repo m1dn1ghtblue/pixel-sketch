@@ -28,13 +28,13 @@ main {
 
 #draw-space {
     margin: 15px;
-    height: 600px;
-    width: 600px;
+    height: 800px;
+    width: 800px;
 }
 
 #menu {
     background-color: cadetblue;
-    width: 300px;
+    width: 500px;
     border: 1px solid blue;
 }
 
