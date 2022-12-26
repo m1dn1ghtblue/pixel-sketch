@@ -22,36 +22,30 @@ main {
 }
 
 #workspace {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-column-gap: 2rem;
+    display: flex;
     border: 1px solid red;
-    justify-items: center;
+    justify-content: space-around;
     height: auto;
 }
 
 #draw-space {
-    height: 100%;
-    width: 100%;
-    margin: auto;
-    border: 1px solid black;
+    margin: 15px;
+    height: 600px;
+    width: 600px;
 }
 
 #menu {
-    width: 100%;
-    height: auto;
+    flex-basis: 40%;
     border: 1px solid blue;
 }
 
 #grid {
-    margin: 4rem;
     display: grid;
     gap: 0;
 }
 
 .grid-cell {
-    width: 40px;
-    height: 40px;
+    box-sizing: border-box;
     background-color: white;
     border: 1px solid red;
 }

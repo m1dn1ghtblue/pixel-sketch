@@ -6,6 +6,7 @@ function makeGrid(container, size) {
 
     console.log(container.offsetWidth);
     const cellSize = container.offsetWidth / size;
+    console.log(cellSize);
 
     for (let i = 0; i < size * size; ++i) {
         const cell = document.createElement('div');
@@ -18,4 +19,4 @@ function makeGrid(container, size) {
 }
 
 const gridContainer = document.getElementById('draw-space');
-makeGrid(gridContainer, 9);
+makeGrid(gridContainer, 16);
