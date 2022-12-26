@@ -31,6 +31,7 @@ main {
 }
 
 #draw-space {
+    margin: auto;
     border: 1px solid black;
 }
 
@@ -42,12 +43,16 @@ main {
 
 .grid {
     display: grid;
-    gap: 10px 10px;
+    gap: 0;
 }
 
 .grid-cell {
     width: 40px;
     height: 40px;
-    background-color: black;
+    background-color: white;
     border: 1px solid red;
+}
+
+.grid-cell:hover {
+    background-color: black;
 }
