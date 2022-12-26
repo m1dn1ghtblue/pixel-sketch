@@ -9,12 +9,7 @@ body {
 }
 
 main {
-    padding: 2rem;
-    width: 80%;
-    border: 4px solid black;
-    border-radius: 10px;
-    margin: 0 auto;
-    background-color: white;
+    margin: 5% auto;
 }
 
 #heading {
@@ -24,8 +19,11 @@ main {
 #workspace {
     display: flex;
     border: 1px solid red;
-    justify-content: space-around;
-    height: auto;
+    justify-content: space-evenly;
+}
+
+#draw-space-wrapper {
+    background-color: cadetblue;
 }
 
 #draw-space {
@@ -35,11 +33,15 @@ main {
 }
 
 #menu {
-    flex-basis: 40%;
+    background-color: cadetblue;
+    width: 300px;
     border: 1px solid blue;
 }
 
+
+
 #grid {
+    background-color: cadetblue;
     display: grid;
     gap: 0;
 }
@@ -48,6 +50,7 @@ main {
     box-sizing: border-box;
     background-color: white;
     border: 1px solid red;
+    user-select: none;
 }
 
 .grid-cell:hover {

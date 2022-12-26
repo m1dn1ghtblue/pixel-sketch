@@ -13,6 +13,7 @@ function makeGrid(container, size) {
         cell.classList.add('grid-cell');
         cell.style.width = `${cellSize}px`;
         cell.style.height = `${cellSize}px`;
+        cell.draggable = false;
         grid.appendChild(cell);
     }
     container.appendChild(grid);
