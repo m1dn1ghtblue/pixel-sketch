@@ -41,7 +41,12 @@ function makeGrid(container, size) {
 }
 
 function paint(target) {
-    target.style.backgroundColor = getComputedStyle(root).getPropertyValue('--draw-color');
+    if (rainbow) {
+        target.style.backgroundColor = rainbowColor();
+    }
+    else {
+        target.style.backgroundColor = getComputedStyle(root).getPropertyValue('--draw-color');
+    }
 }
 
 function erase(target) {
@@ -69,8 +74,18 @@ function clear(container) {
     container.childNodes.forEach(node => erase(node));
 }
 
+function rainbowColor() {
+    rainbowId = (rainbowId + 1) % 256;
+    let red = Math.sin(0.2 * rainbowId) * 127 + 128;
+    let green = Math.sin(0.2 * rainbowId + Math.PI / 2) * 127 + 128;
+    let blue = Math.sin(0.2 * rainbowId + Math.PI) * 127 + 128;
+
+    return `rgb(${Math.round(red)},${Math.round(green)},${Math.round(blue)})`;
+}
+
 let isDown = false;
 let gridSize = 32;
+let rainbowId = 0;
 
 const root = document.documentElement;
 const gridContainer = document.getElementById('draw-space');
@@ -90,6 +105,12 @@ toggleGrid();
 gridSwitch.addEventListener('change', () => {
     gridBorders = !gridBorders;
     toggleGrid();
+});
+
+const rainbowSwitch = document.getElementById('rainbow-switch');
+let rainbow = rainbowSwitch.checked;
+rainbowSwitch.addEventListener('change', () => {
+    rainbow = !rainbow;
 });
 
 const clearBtn = document.getElementById('clear-btn');
