@@ -37,10 +37,15 @@ function makeGrid(container, size) {
     container.childNodes.forEach(child => child.remove());
 
     container.appendChild(grid);
+    return grid;
 }
 
 function paint(target) {
     target.style.backgroundColor = getComputedStyle(root).getPropertyValue('--draw-color');
+}
+
+function erase(target) {
+    target.style.backgroundColor = getComputedStyle(root).getPropertyValue('var(--draw-bg-color)');
 }
 
 function setDrawColor(color) {
@@ -60,12 +65,16 @@ function toggleGrid() {
     }
 }
 
+function clear(container) {
+    container.childNodes.forEach(node => erase(node));
+}
 
 let isDown = false;
+let gridSize = 32;
 
 const root = document.documentElement;
 const gridContainer = document.getElementById('draw-space');
-makeGrid(gridContainer, 32);
+let grid = makeGrid(gridContainer, gridSize);
 
 const colorPicker = document.getElementById('color-picker');
 setDrawColor(colorPicker.value);
@@ -82,3 +91,6 @@ gridSwitch.addEventListener('change', () => {
     gridBorders = !gridBorders;
     toggleGrid();
 });
+
+const clearBtn = document.getElementById('clear-btn');
+clearBtn.addEventListener('click', () => clear(grid));
