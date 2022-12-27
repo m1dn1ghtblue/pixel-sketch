@@ -41,7 +41,7 @@ function makeGrid(container, size) {
 }
 
 function paint(target) {
-    if (rainbow) {
+    if (rainbowOn) {
         target.style.backgroundColor = rainbowColor(rainbowId);
         rainbowId = (rainbowId + 1) % 32;
         root.style.setProperty('--draw-hover-color', rainbowColor(rainbowId));
@@ -67,8 +67,8 @@ function setDrawBgColor(color) {
     root.style.setProperty('--draw-bg-color', color);
 }
 
-function toggleGrid() {
-    if (gridBorders) {
+function toggleGrid(gridOn) {
+    if (gridOn) {
         root.style.setProperty('--grid-border', '1px solid var(--dark-opaque-color)');
     }
     else {
@@ -96,8 +96,8 @@ function resetGrid() {
     grid = makeGrid(gridContainer, gridSize);
 }
 
-function toggleRainbow() {
-    if (rainbow) {
+function toggleRainbow(rainbowOn) {
+    if (rainbowOn) {
         root.style.setProperty('--draw-hover-color', rainbowColor(rainbowId));
     }
     else {
@@ -123,18 +123,16 @@ bgColorPicker.addEventListener('change', () => setDrawBgColor(bgColorPicker.valu
 
 // Grid toggle
 const gridSwitch = document.getElementById('grid-switch');
-let gridBorders = gridSwitch.checked;
 gridSwitch.addEventListener('change', () => {
-    gridBorders = !gridBorders;
-    toggleGrid();
+    toggleGrid(gridSwitch.checked);
 });
 
 // Rainbow toggle
 const rainbowSwitch = document.getElementById('rainbow-switch');
-let rainbow = rainbowSwitch.checked;
+let rainbowOn = rainbowSwitch.checked;
 rainbowSwitch.addEventListener('change', () => {
-    rainbow = !rainbow;
-    toggleRainbow();
+    rainbowOn = rainbowSwitch.checked;
+    toggleRainbow(rainbowOn);
 });
 
 // Grid size slider
@@ -151,5 +149,5 @@ clearBtn.addEventListener('click', () => {
 
 let grid = makeGrid(gridContainer, gridSize);
 resetGrid();
-toggleGrid();
-toggleRainbow();
+toggleGrid(gridSwitch.checked);
+toggleRainbow(rainbowSwitch.checked);
