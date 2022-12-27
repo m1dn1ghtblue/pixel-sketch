@@ -88,6 +88,25 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
+.menu-btn {
+    width: 90%;
+    height: 32px;
+    align-self: center;
+    border-radius: 32px;
+    border: none;
+    background-color: #cccccc;
+    box-shadow: 0 11px 10px 2px rgba(34, 60, 80, 0.2);
+    transition-duration: 0.3s;
+}
+
+.menu-btn:hover {
+    cursor: pointer;
+    background-color: white;
+}
+.menu-btn:active {
+    transform: translateY(3px);
+}
+
 #heading {
     font-size: 2rem;
     text-align: center;
