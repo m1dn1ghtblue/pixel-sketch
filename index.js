@@ -52,7 +52,11 @@ function paint(target) {
 }
 
 function erase(target) {
-    target.style.backgroundColor = getComputedStyle(root).getPropertyValue('var(--draw-bg-color)');
+    target.style.transitionDuration = '0.5s';
+    target.style.setProperty('background-color', getComputedStyle(root).getPropertyValue('var(--draw-bg-color)'));
+    setTimeout(() => {
+        target.style.transitionDuration = '0s';
+    }, 1);
 }
 
 function setDrawColor(color) {
