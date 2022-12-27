@@ -150,5 +150,6 @@ clearBtn.addEventListener('click', () => {
 });
 
 let grid = makeGrid(gridContainer, gridSize);
+resetGrid();
 toggleGrid();
 toggleRainbow();
