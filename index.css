@@ -1,12 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@500&display=swap');
-
-
 :root {
     --draw-bg-color: #ffffff;
     --draw-color: #000000;
     --grid-border: none;
-    --main-color: cadetblue;
     --draw-hover-color: var(--draw-color);
+
+    --main-color: #1C2541;
+    --dark-color: #0B132B;
+    --dark-opaque-color: rgba(11, 19, 43, 0.5);
+    --light-color: #F0EFF4;
+    --accent-color: #28AFB0;
 }
 
 html {
@@ -16,15 +18,16 @@ html {
 
 html, button {
     font-family: 'Chivo Mono', monospace;
-    font-size: 16px;
+    font-size: 24px;
+    color: var(--light-color);
 }
 
 body {
-    background-color: azure;
+    background-color: var(--light-color);
 }
 
 main {
-    margin: 2% auto;
+    margin: 1% auto;
 }
 
 .switch {
@@ -41,8 +44,8 @@ main {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
+    background-color: var(--dark-color);
+    transition: 0.4s;
     border-radius: 32px;
 }
 
@@ -53,17 +56,18 @@ main {
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
-    transition: .4s;
+    background-color: var(--main-color);
+    transition: 0.4s;
     border-radius: 50%;
 }
 
 .switch input:checked + .slider {
-    background-color: cornflowerblue;
+    background-color: var(--accent-color);
 }
 
 input:checked + .slider:before {
     transform: translateX(26px);
+    background-color: var(--light-color);
 }
 
 .switch input {
@@ -73,66 +77,82 @@ input:checked + .slider:before {
 .range-slider {
     appearance: none;
     width: 80%;
-    height: 25px;
-    background: #d3d3d3;
+    height: 34px;
+    background: var(--dark-color);
     outline: none;
-    transition: opacity .2s;
     border-radius: 25px;
+    transition-duration: 0.4s;
 }
 
 .range-slider::-webkit-slider-thumb, .range-slider::-moz-range-thumb  {
-    cursor: pointer;
     appearance: none;
-    background-color: white;
-    width: 25px;
-    height: 25px;
+    background-color: var(--main-color);
+    border: 0;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
+    transition: 0.4s;
+}
+
+.range-slider:hover {
+    cursor: pointer;
+    background-color: var(--accent-color);
+}
+
+.range-slider:hover::-webkit-slider-thumb, .range-slider:hover::-moz-range-thumb {
+    background-color: var(--light-color);
 }
 
 .menu-btn {
-    width: 90%;
-    height: 32px;
+    width: 70%;
+    height: auto;
+    padding: 0.5rem;
     align-self: center;
     border-radius: 32px;
     border: none;
-    background-color: #cccccc;
-    box-shadow: 0 11px 10px 2px rgba(34, 60, 80, 0.2);
-    transition-duration: 0.3s;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    box-shadow: 0 15px 11px 0  var(--dark-opaque-color);
+    transition-duration: 0.4s;
 }
 
 .menu-btn:hover {
     cursor: pointer;
-    background-color: white;
-}
-.menu-btn:active {
-    transform: translateY(3px);
+    background-color: var(--accent-color);
+    color: var(--dark-color);
+    transform: scale(1.1);
 }
 
-input[type="color"] {
+
+.menu-btn:active {
+    transform: translateY(4px);
+}
+
+input[type="color"], input[type="color"]::-moz-color-swatch, input[type="color"]::-webkit-color-swatch {
     width: 64px;
     height: 64px;
     padding: 0;
-    border: 2px solid black;
+    border: none;
+    outline: none;
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
 }
 
-#heading {
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
 #workspace {
+    margin: 4% auto;
     display: flex;
     justify-content: space-evenly;
 }
 
 
 #draw-space-wrapper, #menu {
-    background-color: var(--main-color);
     border-radius: 7px;
+    box-shadow: 0 10px 16px 7px var(--dark-opaque-color);
+}
+
+#draw-space-wrapper {
+    background-color: var(--dark-color);
 }
 
 #draw-space {
@@ -142,7 +162,8 @@ input[type="color"] {
 }
 
 #menu {
-    padding: 12px;
+    background-color: var(--main-color);
+    padding: 1rem;
     width: 400px;
     height: auto;
     display: flex;
@@ -173,8 +194,4 @@ label {
     text-align: center;
     justify-items: center;
     align-items: center;
-}
-
-.input-label {
-    font-size: 1.5rem;
 }

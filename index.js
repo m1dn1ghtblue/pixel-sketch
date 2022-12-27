@@ -69,7 +69,7 @@ function setDrawBgColor(color) {
 
 function toggleGrid() {
     if (gridBorders) {
-        root.style.setProperty('--grid-border', '1px solid var(--main-color)');
+        root.style.setProperty('--grid-border', '1px solid var(--dark-opaque-color)');
     }
     else {
         root.style.setProperty('--grid-border', 'none');
