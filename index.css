@@ -34,6 +34,7 @@ main {
 }
 
 .slider {
+    cursor: pointer;
     position: absolute;
     top: 0;
     left: 0;
@@ -68,6 +69,24 @@ input:checked + .slider:before {
     display: none;
 }
 
+.range-slider {
+    appearance: none;
+    width: 80%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    transition: opacity .2s;
+    border-radius: 25px;
+}
+
+.range-slider::-webkit-slider-thumb, .range-slider::-moz-range-thumb  {
+    cursor: pointer;
+    appearance: none;
+    background-color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
 
 #heading {
     font-size: 2rem;
@@ -122,10 +141,8 @@ label {
     grid-template-columns: 1fr 1fr;
     text-align: center;
     justify-items: center;
-    cursor: pointer;
 }
 
 .input-label {
     font-size: 1.5rem;
-
 }
