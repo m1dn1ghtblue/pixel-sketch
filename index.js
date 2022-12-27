@@ -29,13 +29,13 @@ function makeGrid(container, size) {
             }
         });
 
-        cell.addEventListener('mouseup', () => {
-            isDown = false;
-        })
         grid.appendChild(cell);
     }
-    container.childNodes.forEach(child => child.remove());
+    root.addEventListener('mouseup', () => {
+        isDown = false;
+    });
 
+    container.childNodes.forEach(child => child.remove());
     container.appendChild(grid);
     return grid;
 }
@@ -70,8 +70,8 @@ function toggleGrid() {
     }
 }
 
-function clear(container) {
-    container.childNodes.forEach(node => erase(node));
+function clear() {
+    grid.childNodes.forEach(node => erase(node));
 }
 
 function rainbowColor() {
@@ -84,22 +84,29 @@ function rainbowColor() {
     return `rgb(${Math.round(red)},${Math.round(green)},${Math.round(blue)})`;
 }
 
+function resetGrid() {
+    gridSize = sizeSlider.value;
+    gridSizeLabel.innerText = `${gridSize} x ${gridSize}`;
+    grid = makeGrid(gridContainer, gridSize);
+}
+
 let isDown = false;
-let gridSize = 32;
 let rainbowId = 0;
 
 const root = document.documentElement;
 const gridContainer = document.getElementById('draw-space');
-let grid = makeGrid(gridContainer, gridSize);
 
+// Pen color picker
 const colorPicker = document.getElementById('color-picker');
 setDrawColor(colorPicker.value);
 colorPicker.addEventListener('change', () => setDrawColor(colorPicker.value));
 
+// Background color picker
 const bgColorPicker = document.getElementById('bg-color-picker');
 setDrawBgColor(bgColorPicker.value);
 bgColorPicker.addEventListener('change', () => setDrawBgColor(bgColorPicker.value));
 
+// Grid toggle
 const gridSwitch = document.getElementById('grid-switch');
 let gridBorders = gridSwitch.checked;
 toggleGrid();
@@ -108,11 +115,24 @@ gridSwitch.addEventListener('change', () => {
     toggleGrid();
 });
 
+// Rainbow toggle
 const rainbowSwitch = document.getElementById('rainbow-switch');
 let rainbow = rainbowSwitch.checked;
 rainbowSwitch.addEventListener('change', () => {
     rainbow = !rainbow;
 });
 
+// Grid size slider
+const sizeSlider = document.getElementById('size-slider');
+const gridSizeLabel = document.getElementById('grid-size-label');
+let gridSize = sizeSlider.value;
+sizeSlider.addEventListener('input', resetGrid);
+
+// Clear button
 const clearBtn = document.getElementById('clear-btn');
-clearBtn.addEventListener('click', () => clear(grid));
+clearBtn.addEventListener('click', () => {
+    clear();
+});
+
+let grid = makeGrid(gridContainer, gridSize);
+
