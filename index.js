@@ -62,9 +62,19 @@ function toggleGrid() {
     }
 }
 
+
 let isDown = false;
 let gridBorders = false;
 
 const root = document.documentElement;
 const gridContainer = document.getElementById('draw-space');
 makeGrid(gridContainer, 32);
+
+const colorPicker = document.getElementById('color-picker');
+setDrawColor(colorPicker.value);
+colorPicker.addEventListener('change', () => setDrawColor(colorPicker.value));
+
+const bgColorPicker = document.getElementById('bg-color-picker');
+setDrawBgColor(bgColorPicker.value);
+bgColorPicker.addEventListener('change', () => setDrawBgColor(bgColorPicker.value));
+

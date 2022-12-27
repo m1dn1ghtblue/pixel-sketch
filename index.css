@@ -42,6 +42,8 @@ main {
 #menu {
     background-color: var(--main-color);
     width: 500px;
+    display: flex;
+    flex-flow: column;
 }
 
 #grid {
