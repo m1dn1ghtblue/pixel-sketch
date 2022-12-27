@@ -52,8 +52,6 @@ function setDrawBgColor(color) {
 }
 
 function toggleGrid() {
-    gridBorders = !gridBorders;
-
     if (gridBorders) {
         root.style.setProperty('--grid-border', '1px solid var(--main-color)');
     }
@@ -64,7 +62,6 @@ function toggleGrid() {
 
 
 let isDown = false;
-let gridBorders = false;
 
 const root = document.documentElement;
 const gridContainer = document.getElementById('draw-space');
@@ -79,4 +76,9 @@ setDrawBgColor(bgColorPicker.value);
 bgColorPicker.addEventListener('change', () => setDrawBgColor(bgColorPicker.value));
 
 const gridSwitch = document.getElementById('grid-switch');
-gridSwitch.addEventListener('change', toggleGrid)
+let gridBorders = gridSwitch.checked;
+toggleGrid();
+gridSwitch.addEventListener('change', () => {
+    gridBorders = !gridBorders;
+    toggleGrid();
+});
