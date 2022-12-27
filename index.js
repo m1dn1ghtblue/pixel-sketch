@@ -42,7 +42,9 @@ function makeGrid(container, size) {
 
 function paint(target) {
     if (rainbow) {
-        target.style.backgroundColor = rainbowColor();
+        target.style.backgroundColor = rainbowColor(rainbowId);
+        rainbowId = (rainbowId + 1) % 32;
+        root.style.setProperty('--draw-hover-color', rainbowColor(rainbowId));
     }
     else {
         target.style.backgroundColor = getComputedStyle(root).getPropertyValue('--draw-color');
@@ -74,9 +76,9 @@ function clear() {
     grid.childNodes.forEach(node => erase(node));
 }
 
-function rainbowColor() {
+function rainbowColor(rainbowId) {
     const frequency = 0.2;
-    rainbowId = (rainbowId + 1) % 256;
+
     let red = Math.sin(frequency * rainbowId) * 127 + 128;
     let green = Math.sin(frequency * rainbowId + Math.PI / 2) * 127 + 128;
     let blue = Math.sin(frequency * rainbowId + Math.PI) * 127 + 128;
@@ -86,8 +88,17 @@ function rainbowColor() {
 
 function resetGrid() {
     gridSize = sizeSlider.value;
-    gridSizeLabel.innerText = `${gridSize} x ${gridSize}`;
+    gridSizeLabel.innerText = `${gridSize}x${gridSize}`;
     grid = makeGrid(gridContainer, gridSize);
+}
+
+function toggleRainbow() {
+    if (rainbow) {
+        root.style.setProperty('--draw-hover-color', rainbowColor(rainbowId));
+    }
+    else {
+        root.style.setProperty('--draw-hover-color', 'var(--draw-color)');
+    }
 }
 
 let isDown = false;
@@ -109,7 +120,6 @@ bgColorPicker.addEventListener('change', () => setDrawBgColor(bgColorPicker.valu
 // Grid toggle
 const gridSwitch = document.getElementById('grid-switch');
 let gridBorders = gridSwitch.checked;
-toggleGrid();
 gridSwitch.addEventListener('change', () => {
     gridBorders = !gridBorders;
     toggleGrid();
@@ -120,6 +130,7 @@ const rainbowSwitch = document.getElementById('rainbow-switch');
 let rainbow = rainbowSwitch.checked;
 rainbowSwitch.addEventListener('change', () => {
     rainbow = !rainbow;
+    toggleRainbow();
 });
 
 // Grid size slider
@@ -135,4 +146,5 @@ clearBtn.addEventListener('click', () => {
 });
 
 let grid = makeGrid(gridContainer, gridSize);
-
+toggleGrid();
+toggleRainbow();

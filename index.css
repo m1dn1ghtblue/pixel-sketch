@@ -1,13 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@500&display=swap');
+
 :root {
     --draw-bg-color: #ffffff;
     --draw-color: #000000;
     --grid-border: none;
     --main-color: cadetblue;
+    --draw-hover-color: var(--draw-color);
 }
 
 html {
     margin: 0;
     padding: 0;
+}
+
+html, button {
+    font-family: 'Chivo Mono', monospace;
     font-size: 16px;
 }
 
@@ -16,10 +23,11 @@ body {
 }
 
 main {
-    margin: 1% auto;
+    margin: 2% auto;
 }
 
 #heading {
+    font-size: 2rem;
     text-align: center;
     margin-bottom: 2rem;
 }
@@ -62,7 +70,7 @@ main {
 }
 
 .grid-cell:hover {
-    background-color: var(--draw-color);
+    background-color: var(--draw-hover-color) !important;
 }
 
 label {
@@ -74,4 +82,5 @@ label {
 
 .input-label {
     font-size: 1.5rem;
+
 }
