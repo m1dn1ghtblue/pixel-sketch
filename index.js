@@ -14,14 +14,36 @@ function makeGrid(container, size) {
         cell.style.width = `${cellSize}px`;
         cell.style.height = `${cellSize}px`;
         cell.draggable = false;
-        cell.addEventListener("mouseover", (event) => {
-            event.target.style.backgroundColor = color;
+
+        cell.addEventListener('mousedown', (event) => {
+            if (!isDown) {
+                isDown = true;
+                event.preventDefault();
+                paint(event.target, drawColor);
+            }
+        });
+
+        cell.addEventListener('mousemove', (event) => {
+            if (isDown) {
+                paint(event.target, drawColor);
+            }
+        });
+
+        cell.addEventListener('mouseup', () => {
+            isDown = false;
         })
+
         grid.appendChild(cell);
     }
     container.appendChild(grid);
 }
 
-let color = '#00ff00';
+function paint(target, color) {
+    target.style.backgroundColor = color;
+}
+
+let drawColor = '#000000';
+let isDown = false;
+
 const gridContainer = document.getElementById('draw-space');
 makeGrid(gridContainer, 32);
