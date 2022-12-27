@@ -19,31 +19,52 @@ function makeGrid(container, size) {
             if (!isDown) {
                 isDown = true;
                 event.preventDefault();
-                paint(event.target, drawColor);
+                paint(event.target);
             }
         });
 
         cell.addEventListener('mousemove', (event) => {
             if (isDown) {
-                paint(event.target, drawColor);
+                paint(event.target);
             }
         });
 
         cell.addEventListener('mouseup', () => {
             isDown = false;
         })
-
         grid.appendChild(cell);
     }
+    container.childNodes.forEach(child => child.remove());
+
     container.appendChild(grid);
 }
 
-function paint(target, color) {
-    target.style.backgroundColor = color;
+function paint(target) {
+    target.style.backgroundColor = getComputedStyle(root).getPropertyValue('--draw-color');
 }
 
-let drawColor = '#000000';
-let isDown = false;
+function setDrawColor(color) {
+    root.style.setProperty('--draw-color', color);
+}
 
+function setDrawBgColor(color) {
+    root.style.setProperty('--draw-bg-color', color);
+}
+
+function toggleGrid() {
+    gridBorders = !gridBorders;
+
+    if (gridBorders) {
+        root.style.setProperty('--grid-border', '1px solid var(--main-color)');
+    }
+    else {
+        root.style.setProperty('--grid-border', 'none');
+    }
+}
+
+let isDown = false;
+let gridBorders = false;
+
+const root = document.documentElement;
 const gridContainer = document.getElementById('draw-space');
 makeGrid(gridContainer, 32);

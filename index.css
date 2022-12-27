@@ -1,3 +1,10 @@
+:root {
+    --draw-bg-color: #ffffff;
+    --draw-color: #000000;
+    --grid-border: none;
+    --main-color: cadetblue;
+}
+
 html {
     margin: 0;
     padding: 0;
@@ -23,7 +30,7 @@ main {
 }
 
 #draw-space-wrapper {
-    background-color: cadetblue;
+    background-color: var(--main-color);
 }
 
 #draw-space {
@@ -33,26 +40,23 @@ main {
 }
 
 #menu {
-    background-color: cadetblue;
+    background-color: var(--main-color);
     width: 500px;
-    border: 1px solid blue;
 }
 
-
-
 #grid {
-    background-color: cadetblue;
+    background-color: var(--main-color);
     display: grid;
     gap: 0;
 }
 
 .grid-cell {
     box-sizing: border-box;
-    background-color: white;
-    border: 1px solid cadetblue;
+    background-color: var(--draw-bg-color);
+    border: var(--grid-border);
     user-select: none;
 }
 
 .grid-cell:hover {
-    background-color: black;
+    background-color: var(--draw-color);
 }
