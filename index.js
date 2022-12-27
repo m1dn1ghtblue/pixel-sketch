@@ -23,7 +23,7 @@ function makeGrid(container, size) {
             }
         });
 
-        cell.addEventListener('mousemove', (event) => {
+        cell.addEventListener('mouseover', (event) => {
             if (isDown) {
                 paint(event.target);
             }
@@ -75,10 +75,11 @@ function clear(container) {
 }
 
 function rainbowColor() {
+    const frequency = 0.2;
     rainbowId = (rainbowId + 1) % 256;
-    let red = Math.sin(0.2 * rainbowId) * 127 + 128;
-    let green = Math.sin(0.2 * rainbowId + Math.PI / 2) * 127 + 128;
-    let blue = Math.sin(0.2 * rainbowId + Math.PI) * 127 + 128;
+    let red = Math.sin(frequency * rainbowId) * 127 + 128;
+    let green = Math.sin(frequency * rainbowId + Math.PI / 2) * 127 + 128;
+    let blue = Math.sin(frequency * rainbowId + Math.PI) * 127 + 128;
 
     return `rgb(${Math.round(red)},${Math.round(green)},${Math.round(blue)})`;
 }
