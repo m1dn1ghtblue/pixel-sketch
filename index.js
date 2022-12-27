@@ -78,3 +78,5 @@ const bgColorPicker = document.getElementById('bg-color-picker');
 setDrawBgColor(bgColorPicker.value);
 bgColorPicker.addEventListener('change', () => setDrawBgColor(bgColorPicker.value));
 
+const gridSwitch = document.getElementById('grid-switch');
+gridSwitch.addEventListener('change', toggleGrid)
